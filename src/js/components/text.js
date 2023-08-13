@@ -2,32 +2,34 @@ import * as THREE from 'three'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 
-export function createFont(scene){
+const fontUrl = new URL('../../fonts/PoppinsLight_Regular.json', import.meta.url)
+
+export const socialMediaInfos = {}
+
+export function createText(scene,text='teste', socialMediaName){
   const assetLoader = new FontLoader()
-  console.log('here')
   assetLoader.load(
-    '../../fonts/PoppinsLight_Regular.json', function (font){
-      console.log('here2')
-      const textGeometry = new TextGeometry('testing Hello World!', {
+    fontUrl.href, function (font){
+      const textGeometry = new TextGeometry(text, {
         font: font,
-        size: 80,
-        height: 5,
-        curveSegments: 12,
-        bevelEnabled: true,
-        bevelThickness: 10,
-        bevelSize: 8,
-        bevelOffset: 0,
-        bevelSegments: 5
+        size: 0.5,
+        height: 0.2,
       })
       const textMesh = new THREE.Mesh(textGeometry,
-        new THREE.MeshPhongMaterial({color: 0xeeeeee}),
-        new THREE.MeshPhongMaterial({color: 0xbbbbbb}),
+        new THREE.MeshPhongMaterial({color: 0xeeeeee, visible: false})
       )
-
-      textMesh.castShadow = true
-      console.log({textMesh})
+      socialMediaInfos[socialMediaName] = textMesh
       scene.add(textMesh)
-      textMesh.position.y = 5
+      textMesh.name = socialMediaName
+      textMesh.castShadow = true
+      textMesh.rotation.x = -0.25 * Math.PI
+      textMesh.position.z = 2.5
+      const centerX = new THREE.Box3().setFromObject(textMesh).getCenter(new THREE.Vector3).x
+      textMesh.translateX(-centerX)
+
+      return textMesh
+    }, undefined, function ( err ) {
+      console.error( err );
     }
   )
 }

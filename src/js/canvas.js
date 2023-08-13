@@ -1,5 +1,4 @@
 import * as THREE from 'three'
-
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 import { createSphere } from './components/sphere';
@@ -7,8 +6,7 @@ import { createPlane } from './components/plane';
 import { createLight } from './components/lights';
 import { datGuide } from './helpers/dat-gui';
 import { models, createGlbSocialMedias } from './components/social-cards';
-import { mouseHoverIntersections } from './events/hover';
-import { createFont } from './components/text';
+import { createText, socialMediaInfos } from '../js/components/text';
 
 const facebookUrl = new URL('../assets/facebook.glb', import.meta.url)
 const instagramUrl = new URL('../assets/instagram.glb', import.meta.url)
@@ -35,16 +33,22 @@ const camera = new THREE.PerspectiveCamera(
 
 createLight(scene)
 
-// const axesHelper = new THREE.AxesHelper(10)
-// scene.add(axesHelper)
+const axesHelper = new THREE.AxesHelper(10)
+scene.add(axesHelper)
+
+// const planeHelper = new THREE.GridHelper(25,25, 0xffffff)
+// planeHelper.rotation.y = -0.5 * Math.PI
+// planeHelper.position.y = 0.1
+// planeHelper.position.x = -0.5
+// scene.add(planeHelper)
 
 // camera.position.z = 5
 // camera.position.y = 2
 camera.position.set(0, 5, 15)
-camera.lookAt(0, 7, 0)
+camera.lookAt(0,6.5, 0)
 
-const orbit = new OrbitControls(camera, renderer.domElement)
-orbit.update() //chamar essa função sempre que houver update na posição da camera
+// const orbit = new OrbitControls(camera, renderer.domElement)
+// orbit.update() //chamar essa função sempre que houver update na posição da camera
 
 const sphereRadius = 1.75
 const tangSphereSocialCard = 2.25
@@ -52,23 +56,16 @@ const planeLevelY = 2
 const sphereMesh = createSphere(scene, sphereRadius, [0, planeLevelY, 0])
 const planeMesh = createPlane(scene)
 
-console.log({ sphereMesh })
-console.log(tangSphereSocialCard * Math.cos((45 * Math.PI) / 180))
-
-const socialMediasObjs = [
-  createGlbSocialMedias(whatsUrl, 'whats', scene, [tangSphereSocialCard, planeLevelY, 0], 90, 0.15, 0, 0.5),
-  createGlbSocialMedias(linkedinUrl, 'linkedin', scene, [0, planeLevelY, -tangSphereSocialCard], 180, 0.25, 0, 0.5),
-  createGlbSocialMedias(facebookUrl, 'facebook', scene, [-tangSphereSocialCard, planeLevelY, 0], 270),
-  createGlbSocialMedias(instagramUrl, 'insta', scene, [0, planeLevelY, tangSphereSocialCard], 360, 0.20, 0, 0.5),
+const {cardParent, textMesh} = [
+  createGlbSocialMedias(whatsUrl, 'whats', scene, [tangSphereSocialCard, planeLevelY, 0], 90, 0.15, 0, 0.5, "+55(11)93009-4808"),
+  createGlbSocialMedias(linkedinUrl, 'linkedin', scene, [0, planeLevelY, -tangSphereSocialCard], 180, 0.25, 0, 0.5, "arthur-sacurai-48169ab4"),
+  createGlbSocialMedias(facebookUrl, 'facebook', scene, [-tangSphereSocialCard, planeLevelY, 0], 270,0,0, 0,"arthur.sacurai"),
+  createGlbSocialMedias(instagramUrl, 'insta', scene, [0, planeLevelY, tangSphereSocialCard], 360, 0.20, 0, 0.5, "@arthursacurai"),
 ]
 
-createFont(scene)
-
-console.log(models)
-// const faceCard1 = createSocialCards(scene, [-tangSphereSocialCard, planeLevelY, 0], 0xffff00, 90)
-// const faceCard2 = createSocialCards(scene, [0, planeLevelY, tangSphereSocialCard], 0x00ff00, 180)
-// const faceCard3 = createSocialCards(scene, [tangSphereSocialCard, planeLevelY, 0], 0x0000FF, 270)
-// const faceCard4 = createSocialCards(scene, [0, planeLevelY, -tangSphereSocialCard], 0xffffff, 360)
+const groupSocialText = new THREE.Group()
+groupSocialText.add([cardParent, textMesh])
+console.log({groupSocialText})
 
 const datGui = datGuide({
   sphereMesh
@@ -76,7 +73,7 @@ const datGui = datGuide({
 
 const rayCaster = new THREE.Raycaster()
 const mousePosition = new THREE.Vector2()
-let lastObjIntersected;
+let lastObjIntersected = {};
 
 window.addEventListener('mousemove', (e) => {
   const mousePosX = e.clientX
@@ -89,36 +86,38 @@ window.addEventListener('mousemove', (e) => {
   mousePosition.y = - (mousePosY / window.innerHeight) * 2 + 1
 })
 
-
 const clock = new THREE.Clock()
-let normalizedRotation = 1
+let rotationEnabled = true
+
 function animate(time) {
   for (let i = 0; i < models.length; i++) {
-    if (models[i]) {
+    if (models[i] && rotationEnabled) {
       models[i].rotateY(0.01)
     }
   }
-  // if(normalizedRotation === 360){
-  //   normalizedRotation = 1
-  // }
-  // faceCard.rotation.y = Math.PI / (180/normalizedRotation)
-  // normalizedRotation++
   rayCaster.setFromCamera(mousePosition, camera)
   const intersects = rayCaster.intersectObject(scene, true)
   if (intersects && intersects.length > 0) {
     var object = intersects[0].object;
-
     if (object.parent.name === 'social-media') {
-      if (!lastObjIntersected) {
+      rotationEnabled = false
+      if (!lastObjIntersected.obj) {
         object.parent.position.y = 2.5
-        lastObjIntersected = object
-      } else if (object.parent.uuid !== lastObjIntersected.parent.uuid) {
+        socialMediaInfos[`${object.parent.userData.socialMediaName}`].material.visible = true
+        lastObjIntersected.obj = object
+        lastObjIntersected.objText = socialMediaInfos[`${object.parent.userData.socialMediaName}`]
+      } else if (object.parent.uuid !== lastObjIntersected.obj.parent.uuid) {
         object.parent.position.y = 2.5
-        if (lastObjIntersected.parent.name === 'social-media') {
-          lastObjIntersected.parent.position.y = 2
+        socialMediaInfos[`${object.parent.userData.socialMediaName}`].material.visible = true
+        if (lastObjIntersected.obj.parent.name === 'social-media') {
+          lastObjIntersected.obj.parent.position.y = 2
         }
-        lastObjIntersected = object
+        lastObjIntersected.objText.material.visible = false
+        lastObjIntersected.obj = object
+        lastObjIntersected.objText = socialMediaInfos[`${object.parent.userData.socialMediaName}`]
       }
+    } else {
+      rotationEnabled = true
     }
   }
   renderer.render(scene, camera)
