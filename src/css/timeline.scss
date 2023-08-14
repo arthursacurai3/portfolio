@@ -1,0 +1,84 @@
+.timeline {
+  &__screen-container {
+    position: absolute;
+    width: 40vw;
+    height: 40vh;
+    top: 5%;
+    right: 50%;
+    border: 2px solid red;
+    transform: translateX(50%);
+    border-radius: 20px;
+    box-shadow: 0 0 100px 20px rgba(204, 204, 204, 0.167);
+  }
+
+  &__arrow-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100px;
+    width: 200px;
+
+    .curved-corner-bottomleft,
+    .curved-corner-bottomright,
+    .curved-corner-topleft,
+    .curved-corner-topright {
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .curved-corner-bottomleft:before,
+    .curved-corner-bottomright:before,
+    .curved-corner-topleft:before,
+    .curved-corner-topright:before {
+      content: "";
+      display: block;
+      width: 200%;
+      height: 200%;
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .curved-corner-bottomleft:before {
+      bottom: 0;
+      left: 0;
+      box-shadow: -50px 50px 0 0 red;
+    }
+
+    .curved-corner-bottomright:before {
+      bottom: 0;
+      right: 0;
+      box-shadow: 50px 50px 0 0 red;
+    }
+
+    .curved-corner-topleft:before {
+      top: 0;
+      left: 0;
+      box-shadow: -50px -50px 0 0 red;
+    }
+
+    .curved-corner-topright:before {
+      top: 0;
+      right: 0;
+      box-shadow: 50px -50px 0 0 red;
+    }
+  }
+
+  &__bar-container {
+    position: absolute;
+    width: 5px;
+    height: 40vh;
+    top: 5%;
+    right: 20%;
+    background: linear-gradient(0deg,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(186, 186, 186, 1) 25%,
+        rgba(229, 229, 229, 1) 50%,
+        rgba(186, 186, 186, 1) 75%,
+        rgb(0, 0, 0) 100%);
+
+    box-sizing: border-box;
+  }
+}
