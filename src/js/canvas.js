@@ -1,12 +1,13 @@
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
-import { createSphere } from './components/sphere';
-import { createPlane } from './components/plane';
-import { createLight } from './components/lights';
+import { createSphere } from './components/webgl/sphere';
+import { createPlane } from './components/webgl/plane';
+import { createLight } from './components/webgl/lights';
 import { datGuide } from './helpers/dat-gui';
-import { models, createGlbSocialMedias } from './components/social-cards';
-import { createText, socialMediaInfos } from '../js/components/text';
+import { models, createGlbSocialMedias } from './components/webgl/social-cards';
+import { socialMediaInfos } from '../js/components/webgl/text';
+import { createFocusLight } from './components/webgl/focus-light';
 
 const facebookUrl = new URL('../assets/facebook.glb', import.meta.url)
 const instagramUrl = new URL('../assets/instagram.glb', import.meta.url)
@@ -33,8 +34,8 @@ const camera = new THREE.PerspectiveCamera(
 
 createLight(scene)
 
-const axesHelper = new THREE.AxesHelper(10)
-scene.add(axesHelper)
+// const axesHelper = new THREE.AxesHelper(10)
+// scene.add(axesHelper)
 
 // const planeHelper = new THREE.GridHelper(25,25, 0xffffff)
 // planeHelper.rotation.y = -0.5 * Math.PI
@@ -45,7 +46,7 @@ scene.add(axesHelper)
 // camera.position.z = 5
 // camera.position.y = 2
 camera.position.set(0, 5, 15)
-camera.lookAt(0,6.5, 0)
+camera.lookAt(0, 6.5, 0)
 
 // const orbit = new OrbitControls(camera, renderer.domElement)
 // orbit.update() //chamar essa função sempre que houver update na posição da camera
@@ -56,24 +57,26 @@ const planeLevelY = 2
 const sphereMesh = createSphere(scene, sphereRadius, [0, planeLevelY, 0])
 const planeMesh = createPlane(scene)
 
-const {cardParent, textMesh} = [
+const { cardParent, textMesh } = [
   createGlbSocialMedias(whatsUrl, 'whats', scene, [tangSphereSocialCard, planeLevelY, 0], 90, 0.15, 0, 0.5, "+55(11)93009-4808"),
   createGlbSocialMedias(linkedinUrl, 'linkedin', scene, [0, planeLevelY, -tangSphereSocialCard], 180, 0.25, 0, 0.5, "arthur-sacurai-48169ab4"),
-  createGlbSocialMedias(facebookUrl, 'facebook', scene, [-tangSphereSocialCard, planeLevelY, 0], 270,0,0, 0,"arthur.sacurai"),
+  createGlbSocialMedias(facebookUrl, 'facebook', scene, [-tangSphereSocialCard, planeLevelY, 0], 270, 0, 0, 0, "arthur.sacurai"),
   createGlbSocialMedias(instagramUrl, 'insta', scene, [0, planeLevelY, tangSphereSocialCard], 360, 0.20, 0, 0.5, "@arthursacurai"),
 ]
 
 const groupSocialText = new THREE.Group()
 groupSocialText.add([cardParent, textMesh])
-console.log({groupSocialText})
+console.log({ groupSocialText })
 
-const datGui = datGuide({
-  sphereMesh
-})
+// const datGui = datGuide({
+//   sphereMesh
+// })
+const focusLight = createFocusLight(scene)
 
 const rayCaster = new THREE.Raycaster()
 const mousePosition = new THREE.Vector2()
 let lastObjIntersected = {};
+var hightlightObj;
 
 window.addEventListener('mousemove', (e) => {
   const mousePosX = e.clientX
@@ -95,6 +98,10 @@ function animate(time) {
       models[i].rotateY(0.01)
     }
   }
+  if (hightlightObj) {
+    hightlightObj.position.y = 2 + 0.75 * Math.abs(Math.sin(time / 700))
+  }
+
   rayCaster.setFromCamera(mousePosition, camera)
   const intersects = rayCaster.intersectObject(scene, true)
   if (intersects && intersects.length > 0) {
@@ -102,12 +109,13 @@ function animate(time) {
     if (object.parent.name === 'social-media') {
       rotationEnabled = false
       if (!lastObjIntersected.obj) {
-        object.parent.position.y = 2.5
         socialMediaInfos[`${object.parent.userData.socialMediaName}`].material.visible = true
         lastObjIntersected.obj = object
         lastObjIntersected.objText = socialMediaInfos[`${object.parent.userData.socialMediaName}`]
+
+        hightlightObj = object.parent
       } else if (object.parent.uuid !== lastObjIntersected.obj.parent.uuid) {
-        object.parent.position.y = 2.5
+        hightlightObj = object.parent
         socialMediaInfos[`${object.parent.userData.socialMediaName}`].material.visible = true
         if (lastObjIntersected.obj.parent.name === 'social-media') {
           lastObjIntersected.obj.parent.position.y = 2
@@ -120,13 +128,11 @@ function animate(time) {
       rotationEnabled = true
     }
   }
+
   renderer.render(scene, camera)
 }
 
 renderer.setAnimationLoop(animate)
-
-// mouseHoverIntersections(scene, camera )
-
 
 window.addEventListener('resize', function () {
   camera.aspect = window.innerWidth / window.innerHeight

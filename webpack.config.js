@@ -8,7 +8,7 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist')
   },
-  mode : 'none',
+  mode: 'none',
   module: {
     rules: [
       {
@@ -18,6 +18,10 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ]
+      },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i,
+        type: 'asset/resource'
       },
       {
         test: /\.css$/i,
@@ -37,11 +41,8 @@ module.exports = {
         }
       },
       {
-        test: /\.(jpe?g|png|gif|svg)$/i,
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]'
-        }
+        test: /\.html$/,
+        use: ["html-loader"]
       }
     ]
   },

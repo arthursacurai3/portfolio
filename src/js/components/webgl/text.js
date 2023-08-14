@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { FontLoader } from 'three/examples/jsm/loaders/FontLoader'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js';
 
-const fontUrl = new URL('../../fonts/PoppinsLight_Regular.json', import.meta.url)
+const fontUrl = new URL('../../../fonts/PoppinsLight_Regular.json', import.meta.url)
 
 export const socialMediaInfos = {}
 

@@ -30,11 +30,13 @@ export function createGlbSocialMedias(fileUrl,name, scene, position, rotation, t
         node.castShadow = true
         node.receiveShadow = true
         node.name = name
+        
         node.position.x += translateX
         node.position.y += translateY
         node.position.z += translateZ
       }
     })
+    console.log({model})
     // const axisHelper = new THREE.AxesHelper()
     // model.add(axisHelper)
 

@@ -1,0 +1,113 @@
+.profile {
+  width: min(25vw, 300px);
+  height: 100svh;
+  padding-top: 25px;
+  box-sizing: border-box;
+  background: rgb(15, 15, 15);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 25%, rgba(25, 25, 25, 1) 100%);
+  z-index: 9;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  &.closed {
+    transform: translateX(-90%);
+
+    div {
+      opacity: 0;
+      transition: opacity 1.5s ease; 
+    }
+
+  }
+  transition: all 1.5s ease; 
+  &::after {
+    content: '';
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 25%, rgb(221, 221, 221) 100%);
+    ;
+    position: absolute;
+    top: 0;
+    right: -2px;
+  }
+
+  &__btn {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 25px;
+    right: 0;
+    transform: translateX(50%);
+    background-color: var(--gray-850);
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 50%;
+    z-index: 9;
+
+    background-image: url('/src/assets/icon-arrow-left.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 70%;
+
+    &.closed {
+      background-image: url('/src/assets/icon-arrow-right.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 70%;
+    }
+  }
+
+  &__photo-container {
+    display: flex;
+    justify-content: center;
+
+    img {
+      width: 60%;
+      height: auto;
+    }
+  }
+
+  &__description-container {
+    margin-top: 25px;
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    p {
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  &__stack-logos-container {
+    width: 90%;
+    height: auto;
+    margin: 25px;
+    padding: 10px;
+    background: var(--gray-850);
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-around;
+
+    img {
+      width: min(40px, 20%);
+      height: auto;
+    }
+  }
+
+  &__menu-accordion {
+    width: 100%;
+    padding: 0 25px;
+
+    ul {
+      list-style: none;
+      text-align: left;
+
+      li {
+        padding: 5px 0;
+      }
+    }
+  }
+}
