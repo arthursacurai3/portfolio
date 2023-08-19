@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./src/css/all.scss" />
+  <link rel="stylesheet" href="./src/css/all.scss" type="module"/>
 </head>
 
 <body>
@@ -58,9 +58,13 @@
     </section>
     <section id="timeline" class="timeline">
       <div class="timeline__screen-container">
-        <div class="screens-container">
+        <div class="screens-container desktop">
           <img class="screen showing" src="./src/assets/maria-filo-concept-card.png" data-content="maria-filo-concept-card" />
-          <img class="screen" src="./src/assets/under-control.png" data-content="under-control" />
+          <img class="screen only-screen" src="./src/assets/under-control.png" data-content="under-control" />
+          <img class="screen" src="./src/assets/cris-barros-galeria-pdp.png" data-content="cris-barros-galeria-pdp" />
+        </div>
+        <div class="screens-container mobile">
+          <img class="screen showing" src="./src/assets/maria-filo-concept-card.png" data-content="maria-filo-concept-card" />
           <img class="screen" src="./src/assets/cris-barros-galeria-pdp.png" data-content="cris-barros-galeria-pdp" />
         </div>
         <span></span>
@@ -76,7 +80,7 @@
     <button class="btn-play">Veja o mundo 3D</button>
   </main>
 
-  <script src="./src/js/index.js"></script>
+  <script src="./src/js/index.js" type="module"></script>
 </body>
 
 </html>
