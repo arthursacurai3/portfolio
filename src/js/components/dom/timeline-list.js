@@ -1,11 +1,15 @@
-const $scrollList = document.querySelector('.scroll-list')
-const $screen = document.querySelector('div.screen')
+const $scrollListItens = document.querySelectorAll('.scroll-list-item')
+const $screenImgs = document.querySelectorAll('.screen')
 
-$scrollList.addEventListener('mouseover', (e)=> {
-  console.log({target: e.target, currentTarget: e.currentTarget})
-  if(e.target.className === 'scroll-list-item' ){
-    console.log('here')
-    const img = e.target.getAttribute('data-img')
-    $screen.setAttribute('src', `./assets/${img}.png`)
-  }
+$scrollListItens.forEach((item,idx)=> {
+  item.addEventListener('mouseover', (e) => {
+    if (!e.currentTarget.classList.contains('showing')) {
+      
+      document.querySelector('.screen.showing').classList.toggle('showing')
+      document.querySelector('.scroll-list-item.showing').classList.toggle('showing')
+      $screenImgs[idx].classList.toggle('showing')
+      // document.querySelector(`.screnn[data-content="${e.currentTarget.getAttribute('data-content')}"]`).classList.toggle('showing')
+      e.currentTarget.classList.toggle('showing')
+    }
+  })
 })

@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./css/global.scss" />
+  <link rel="stylesheet" href="./src/css/global.scss" />
 </head>
 
 <body>
@@ -18,20 +18,20 @@
       <button type="button" class="profile__btn">
       </button>
       <div class="profile__photo-container">
-        <img src="./assets/profile-img-ia2.png" alt="">
+        <img src="./src/assets/profile-img-ia2.png" alt="">
       </div>
       <div class="profile__description-container">
         <p id="text1" data-transparent="true">a</p>
         <p id="text2" data-transparent="true">a</p>
       </div>
       <div class="profile__stack-logos-container">
-        <span class="profile__logos-wrapper" data-content="javascript"><img src="./assets/logo-javascript.svg" alt="javascript"></span>
-        <span class="profile__logos-wrapper" data-content="typescript"><img src="./assets/logo-typescript.svg" alt="typescript"></span>
-        <span class="profile__logos-wrapper" data-content="html"><img src="./assets/logo-html.svg" alt=""></span>
-        <span class="profile__logos-wrapper" data-content="css"><img src="./assets/logo-css.svg" alt=""></span>
-        <span class="profile__logos-wrapper" data-content="reactjs"><img src="./assets/logo-react.svg" alt=""></span>
-        <span class="profile__logos-wrapper" data-content="nextjs"><img src="./assets/logo-nextjs.svg" alt=""></span>
-        <span class="profile__logos-wrapper" data-content="threejs"><img src="./assets/logo-threejs.svg" alt=""></span>
+        <span class="profile__logos-wrapper" data-content="javascript"><img src="./src/assets/logo-javascript.svg" alt="javascript"></span>
+        <span class="profile__logos-wrapper" data-content="typescript"><img src="./src/assets/logo-typescript.svg" alt="typescript"></span>
+        <span class="profile__logos-wrapper" data-content="html"><img src="./src/assets/logo-html.svg" alt=""></span>
+        <span class="profile__logos-wrapper" data-content="css"><img src="./src/assets/logo-css.svg" alt=""></span>
+        <span class="profile__logos-wrapper" data-content="reactjs"><img src="./src/assets/logo-react.svg" alt=""></span>
+        <span class="profile__logos-wrapper" data-content="nextjs"><img src="./src/assets/logo-nextjs.svg" alt=""></span>
+        <span class="profile__logos-wrapper" data-content="threejs"><img src="./src/assets/logo-threejs.svg" alt=""></span>
       </div>
       <div class="profile__menu-accordion">
         <div class="accordion">
@@ -58,27 +58,18 @@
     </section>
     <section id="timeline" class="timeline">
       <div class="timeline__screen-container">
-        <div class="screen">
-          <img src="./assets/under-control.png" alt="">
+        <div class="screens-container">
+          <img class="screen showing" src="./src/assets/maria-filo-concept-card.png" data-content="maria-filo-concept-card" />
+          <img class="screen" src="./src/assets/under-control.png" data-content="under-control" />
+          <img class="screen" src="./src/assets/cris-barros-galeria-pdp.png" data-content="cris-barros-galeria-pdp" />
         </div>
-      </div>
-      <div class="timeline__arrow-container">
-        <span class="curved-corner-bottomleft"></span>
-        <span class="curved-corner-bottomright"></span>
-        <span class="curved-corner-topleft"></span>
-        <span class="curved-corner-topright"></span>
+        <span></span>
       </div>
       <div class="timeline__scroll-list-container">
         <ul class="scroll-list">
-          <li class="scroll-list-item">teste</li>
-          <li class="scroll-list-item">teste</li>
-          <li class="scroll-list-item" data-img="maria-filo-concept-card">Maria Filó - Componente da home</li>
-          <li class="scroll-list-item" data-img="under-control">Projeto de estudo - Planejamento financeiro</li>
-          <li class="scroll-list-item" data-img="cris-barros-galeria-pdp">Cris Barros - Galeria Responsiva</li>
-          <li class="scroll-list-item">teste</li>
-          <li class="scroll-list-item">teste</li>
-          <li class="scroll-list-item">teste</li>
-          <li class="scroll-list-item">teste</li>
+          <li class="scroll-list-item showing" data-content="maria-filo-concept-card">Maria Filó - Componente da home</li>
+          <li class="scroll-list-item" data-content="under-control">Projeto de estudo - Planejamento financeiro</li>
+          <li class="scroll-list-item" data-content="cris-barros-galeria-pdp">Cris Barros - Galeria Responsiva</li>
         </ul>
       </div>
     </section>
