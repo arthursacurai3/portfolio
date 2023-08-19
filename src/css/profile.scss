@@ -1,5 +1,6 @@
 .profile {
-  width: min(25vw, 300px);
+  width: 25svw;
+  max-width: 300px;
   height: 100svh;
   padding-top: 25px;
   box-sizing: border-box;
@@ -11,9 +12,12 @@
   flex-direction: column;
   position: relative;
 
-  &.closed {
-    transform: translateX(-90%);
+  body.playing.profile-closed & {
+    transform: translateX(-120%);
+  }
 
+  .profile-closed & {
+    transform: translateX(-90%);
     div {
       opacity: 0;
       transition: opacity 1.5s ease; 
@@ -48,7 +52,7 @@
     background-position: center;
     background-size: 70%;
 
-    &.closed {
+    .profile-closed & {
       background-image: url('/src/assets/icon-arrow-right.svg');
       background-repeat: no-repeat;
       background-position: center;
@@ -127,6 +131,7 @@
     border-radius: 4px;
     display: flex;
     justify-content: space-around;
+    gap: 3px;
 
     img {
       width: 100%;
@@ -141,8 +146,11 @@
     display: flex;
     margin: 0;
     padding: 0;
+    transition: transform .5s ease;
     &:hover{
       cursor: pointer;
+      transform: translateY(-10%);
+      
       &::before{
         content: attr(data-content);
         width: -moz-fit-content;
@@ -151,7 +159,7 @@
         position: absolute;
         top: 0;
         left: 50%;
-        transform: translate(-50%,-130%);
+        transform: translate(-50%,-140%);
         display: block;
         padding: 0 5px;
         border-radius: 2px;
@@ -169,7 +177,7 @@
         position: absolute;
         top: 0;
         left: 50%;
-        transform: translate(-50%,-110%);
+        transform: translate(-50%,-120%);
         border-left: 7px solid transparent;
         border-right: 7px solid transparent;
         border-top: 7px solid var(--gray-100);
@@ -181,14 +189,67 @@
   &__menu-accordion {
     width: 100%;
     padding: 0 25px;
+  }
 
-    ul {
-      list-style: none;
-      text-align: left;
+  .accordion {
+    list-style: none;
+    text-align: left;
 
-      li {
-        padding: 5px 0;
+    &__item {
+      position: relative;
+      margin: 10px 0;
+      overflow: hidden;
+
+      &-label{
+        cursor: pointer;
+      }
+
+      &::after{
+        content: '';
+        cursor: pointer;
+        background-image: url('../assets/icon-arrow-down.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        transform: translateY(-20%);
+      }
+
+      &.open::after{
+        content: '';
+        background-image: url('../assets/icon-arrow-up.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 40px;
+        height: 40px;
+        transform: translateY(-20%);
+      }
+
+      &-content {
+        height: 0;
+        margin-top: 12px;
+        font-size: .9em;
+        
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        a:hover {
+          color: #fff;
+          text-decoration: underline;
+        }
+      }
+
+      &.open .accordion__item-content  {
+        height: 100%;
       }
     }
   }
+  
 }

@@ -50,11 +50,59 @@ body {
     }
   }
 
+  .btn-close{
+    position: absolute;
+    top: 5vh;
+    right: 5vw;
+    background: transparent;
+    color: var(--gray-100);
+    opacity: 0.8;
+    padding: 10px 30px;
+    font-size: 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba($color: #ffffff, $alpha: .5);
+  
+    &:hover{
+      box-shadow: 0 0 50px 5px rgba($color: #ffffff, $alpha: 0.3);
+      color: #ffffff;
+      border: 1px solid #ffffff;
+      transform: scale(1.05);
+    }
+  
+    transition: all 0.5s ease;
+  }
+
   main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     box-sizing: border-box;
     width: 100%;
+    height: auto;
     position: absolute;
     z-index: 9;
+
+    .btn-play {
+      position: absolute;
+      bottom: 15vh;
+      right: 15vw;
+      background: transparent;
+      color: var(--gray-100);
+      opacity: 0.8;
+      padding: 10px 30px;
+      font-size: 1rem;
+      border-radius: 20px;
+      border: 1px solid rgba($color: #ffffff, $alpha: .5);
+    
+      &:hover{
+        box-shadow: 0 0 50px 0px rgba($color: #ffffff, $alpha: 0.3);
+        color: #ffffff;
+        border: 1px solid #ffffff;
+        transform: scale(1.05);
+      }
+    
+      transition: all 0.5s ease;
+    }
   }
 }
 
@@ -69,6 +117,11 @@ button {
 
 button {
   cursor: pointer;
+  z-index: 999;
+}
+
+.displayNone {
+  display: none;
 }
 
 a {

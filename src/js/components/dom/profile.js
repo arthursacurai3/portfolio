@@ -1,5 +1,3 @@
-import Typed from "typed.js"
-
 const $btnProfile = document.querySelector('.profile__btn')
 const $profileContainer = document.querySelector('#profile')
 $btnProfile.addEventListener('click', () => {
@@ -54,3 +52,14 @@ function typingInterval2(){
 }
 
 setTimeout(typingAnimation, 1000)
+
+const $accordionItens = document.querySelectorAll('.accordion__item')
+$accordionItens.forEach(item => {
+  item.addEventListener('click', (e) => {
+    console.log({target: e.target})
+    if(e.target.classList.contains('accordion__item-label') || e.target.classList.contains('accordion__item')){
+      e.currentTarget.classList.toggle('open')
+    }
+  })
+})
+

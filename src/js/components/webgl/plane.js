@@ -1,4 +1,14 @@
 import * as THREE from 'three'
+import * as CANNON from 'cannon-es'
+
+export function createPhysPlane(world){
+  const groundBody = new CANNON.Body({
+    shape: new CANNON.Plane(),
+    type: CANNON.Body.STATIC
+  })
+  world.addBody(groundBody)
+  return groundBody
+}
 
 export function createPlane(scene){
   const planeMesh = new THREE.Mesh(

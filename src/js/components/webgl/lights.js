@@ -8,8 +8,8 @@ export function createLight(scene) {
   scene.add(directionalLight)
   directionalLight.position.set(0, 5, 6)
   directionalLight.castShadow = true
-  directionalLight.shadow.mapSize.width = 1024
-  directionalLight.shadow.mapSize.height = 1024
+  directionalLight.shadow.mapSize.width = 800
+  directionalLight.shadow.mapSize.height = 800
 
   const spotLight = new THREE.SpotLight(0xFFFFFF)
   scene.add(spotLight);

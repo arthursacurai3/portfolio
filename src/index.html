@@ -12,6 +12,7 @@
 </head>
 
 <body>
+  <button class="btn-close displayNone" >Sair do modo 3D</button>
   <main>
     <section id="profile" class="profile">
       <button type="button" class="profile__btn">
@@ -25,34 +26,63 @@
       </div>
       <div class="profile__stack-logos-container">
         <span class="profile__logos-wrapper" data-content="javascript"><img src="./assets/logo-javascript.svg" alt="javascript"></span>
+        <span class="profile__logos-wrapper" data-content="typescript"><img src="./assets/logo-typescript.svg" alt="typescript"></span>
         <span class="profile__logos-wrapper" data-content="html"><img src="./assets/logo-html.svg" alt=""></span>
         <span class="profile__logos-wrapper" data-content="css"><img src="./assets/logo-css.svg" alt=""></span>
         <span class="profile__logos-wrapper" data-content="reactjs"><img src="./assets/logo-react.svg" alt=""></span>
         <span class="profile__logos-wrapper" data-content="nextjs"><img src="./assets/logo-nextjs.svg" alt=""></span>
-        <!-- <img src="./assets/logo-javascript.svg" alt="javascript" data-content="javascript">
-        <img src="./assets/logo-html.svg" alt="">
-        <img src="./assets/logo-css.svg" alt="">
-        <img src="./assets/logo-react.svg" alt="">
-        <img src="./assets/logo-nextjs.svg" alt=""> -->
+        <span class="profile__logos-wrapper" data-content="threejs"><img src="./assets/logo-threejs.svg" alt=""></span>
       </div>
       <div class="profile__menu-accordion">
-        <ul>
-          <li>Sobre mim</li>
-          <li>Projetos</li>
-          <li>Contato</li>
-        </ul>
+        <div class="accordion">
+          <div class="accordion__item open">
+            <div class="accordion__item-label">Sobre mim</div>
+            <div class="accordion__item-content">
+              <p>Arthur Henrique Sacurai, 28 anos</p>
+              <p>Product Owner | Front End Developer - Grupo SOMA</p>
+              <p>Engenheiro de Produção Mecânica - UNESP</p>
+            </div>
+          </div>
+          <div class="accordion__item">
+            <div class="accordion__item-label">Contato</div>
+            <div class="accordion__item-content">
+              <a href="mailto:arthursacurai3@gmail.com">arthursacurai3@gmail.com</a href="mailto:arthursacurai3@gmail.com">
+              <a href="https://wa.me/5511930094808" target="_blank" rel="noopener noreferrer">(11) 93009-4808</a>
+              <a href="https://www.linkedin.com/in/arthur-sacurai-48169ab4/" target="_blank" rel="noopener noreferrer" >Linkedin Perfil</a>
+              <a href="https://www.workana.com/freelancer/c6a920f7cb21c10dfb7a1e0109488e82" target="_blank" rel="noopener noreferrer" >Workana Perfil</a>
+              <a href="https://www.99freelas.com.br/user/arthur-sacurai" target="_blank" rel="noopener noreferrer" >99Freelas Perfil</a>
+            </div>
+          </div>
+        </div class="accordion">
       </div>
     </section>
     <section id="timeline" class="timeline">
-      <div class="timeline__screen-container"></div>
+      <div class="timeline__screen-container">
+        <div class="screen">
+          <img src="./assets/under-control.png" alt="">
+        </div>
+      </div>
       <div class="timeline__arrow-container">
         <span class="curved-corner-bottomleft"></span>
         <span class="curved-corner-bottomright"></span>
         <span class="curved-corner-topleft"></span>
         <span class="curved-corner-topright"></span>
       </div>
-      <div class="timeline__bar-container"></div>
+      <div class="timeline__scroll-list-container">
+        <ul class="scroll-list">
+          <li class="scroll-list-item">teste</li>
+          <li class="scroll-list-item">teste</li>
+          <li class="scroll-list-item" data-img="maria-filo-concept-card">Maria Fikó - Componente da home</li>
+          <li class="scroll-list-item" data-img="under-control">Projeto de estudo - Planejamento financeiro</li>
+          <li class="scroll-list-item" data-img="cris-barros-galeria-pdp">Cris Barros - Galeria Responsiva</li>
+          <li class="scroll-list-item">teste</li>
+          <li class="scroll-list-item">teste</li>
+          <li class="scroll-list-item">teste</li>
+          <li class="scroll-list-item">teste</li>
+        </ul>
+      </div>
     </section>
+    <button class="btn-play">Veja o mundo 3D</button>
   </main>
 </body>
 

@@ -3,12 +3,11 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 import { createText } from './text';
 
 const assetLoader = new GLTFLoader()
-export const models = []
 
+export const models = []
 
 export function createGlbSocialMedias(fileUrl,name, scene, position, rotation, translateX = 0, translateY = 0, translateZ = 0, text){
   let cardParent;
-  let textMesh;
   assetLoader.load(fileUrl.href, function (gltf){
     const model = gltf.scene
     model.position.set(...position)
@@ -18,7 +17,7 @@ export function createGlbSocialMedias(fileUrl,name, scene, position, rotation, t
     cardParent = new THREE.Object3D()
     cardParent.add(model)
 
-    textMesh = createText(scene, text, name, translateX = 0, translateY = 0, translateZ = 0)
+    createText(scene, text, name, translateX = 0, translateY = 0, translateZ = 0)
     cardParent.children.forEach(child => {
       child.name = 'social-media'
       child.userData.socialMediaName = name
@@ -36,7 +35,6 @@ export function createGlbSocialMedias(fileUrl,name, scene, position, rotation, t
         node.position.z += translateZ
       }
     })
-    console.log({model})
     // const axisHelper = new THREE.AxesHelper()
     // model.add(axisHelper)
 
@@ -46,5 +44,4 @@ export function createGlbSocialMedias(fileUrl,name, scene, position, rotation, t
   }, undefined, function(error){
     console.error(error)
   })
-  return {cardParent, textMesh}
 }

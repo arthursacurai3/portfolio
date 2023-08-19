@@ -1,4 +1,16 @@
 import * as THREE from 'three'
+import * as CANNON from 'cannon-es'
+
+export function createPhysSphere(world, sphereRadius, position){
+  const sphereBody = new CANNON.Body({
+    mass: 10,
+    shape: new CANNON.Sphere(sphereRadius),
+    position: new CANNON.Vec3(...position)
+  })
+  world.addBody(sphereBody)
+
+  return sphereBody
+}
 
 export function createSphere(scene, sphereRadius, position){
   const sphereMesh = new THREE.Mesh(
