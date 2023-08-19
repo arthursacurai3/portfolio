@@ -20,7 +20,6 @@ const whatsUrl = new URL('../assets/whats.glb', import.meta.url)
 const carUrl = new URL('../assets/car.gltf', import.meta.url)
 
 let renderer = new THREE.WebGLRenderer({ antialias: true })
-
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
@@ -169,7 +168,6 @@ function animate(time) {
       models[i].rotateY(0.01)
     }
   }
-  // cannonDebugger.update()
 
   raysIntersections()
 
@@ -177,20 +175,21 @@ function animate(time) {
     hightlightObj.position.y = 2 + 0.75 * Math.abs(Math.sin(time / 700))
   }
 
-  // if (playing && setupReady && loadDone) {
+  if (playing && setupReady && loadDone) {
+    cannonDebugger.update()
 
-  //   world.step(timeStep)
+    world.step(timeStep)
 
-  //   threeObjs.planeMesh.position.copy(worldObjs.groundBody.position)
-  //   threeObjs.planeMesh.quaternion.copy(worldObjs.groundBody.quaternion)
+    threeObjs.planeMesh.position.copy(worldObjs.groundBody.position)
+    threeObjs.planeMesh.quaternion.copy(worldObjs.groundBody.quaternion)
 
-  //   threeObjs.sphereMesh.position.copy(worldObjs.sphereBody.position)
-  //   threeObjs.sphereMesh.quaternion.copy(worldObjs.sphereBody.quaternion)
+    threeObjs.sphereMesh.position.copy(worldObjs.sphereBody.position)
+    threeObjs.sphereMesh.quaternion.copy(worldObjs.sphereBody.quaternion)
 
-  //   carModel.position.copy(worldObjs.carBody.position)
-  //   carModel.quaternion.copy(worldObjs.carBody.quaternion)
-  //   console.log(actualCarValues.velocity)
-  // }
+    carModel.position.copy(worldObjs.carBody.position)
+    carModel.quaternion.copy(worldObjs.carBody.quaternion)
+    console.log(actualCarValues.velocity)
+  }
   renderer.render(scene, camera)
 }
 
@@ -200,15 +199,13 @@ let setupReady = false
 export let orbitControls;
 
 export function setupPhysWorld() {
-  // world.gravity = worldParams.gravity
+  world.gravity = worldParams.gravity
 
-  // worldObjs.groundBody = createPhysPlane(world)
-  // worldObjs.groundBody.quaternion.setFromEuler(-0.5 * Math.PI, 0, 0)
+  worldObjs.groundBody = createPhysPlane(world)
+  worldObjs.groundBody.quaternion.setFromEuler(-0.5 * Math.PI, 0, 0)
 
-  // worldObjs.sphereBody = createPhysSphere(world, sphereRadius, [0, planeLevelY, 0])
+  worldObjs.sphereBody = createPhysSphere(world, sphereRadius, [0, planeLevelY, 0])
 
-  // createCar(carUrl,scene)
-  // worldObjs.carBody = createCarPhys(world,scene)
   setTimeout(() => {
     orbitControls = new OrbitControls(camera, renderer.domElement)
     orbitControls.update() //chamar essa função sempre que houver update na posição da camera
@@ -217,14 +214,16 @@ export function setupPhysWorld() {
     // scene.add(followCam)
     // followCam.parent = worldObjs.carBody.threemesh
     // followCam.parent = worldObjs.carBody.threemesh
-    // for(let i = 0; i < models.length; i++){
-    //   models[i].parent.remove(models[i])
-    //   let socialMedia = socialMediaInfos[models[i].children[0].userData.socialMediaName]
-    //   socialMedia.parent.remove(socialMedia)
-    // }
-    // console.log({carModel: threeObjs.carModel, carBody: worldObjs.carBody})
-    // setupReady = true
-    // joystick()
+    createCar(carUrl,scene)
+    worldObjs.carBody = createCarPhys(world,scene)
+    for(let i = 0; i < models.length; i++){
+      models[i].parent.remove(models[i])
+      let socialMedia = socialMediaInfos[models[i].children[0].userData.socialMediaName]
+      socialMedia.parent.remove(socialMedia)
+    }
+    console.log({carModel: threeObjs.carModel, carBody: worldObjs.carBody})
+    setupReady = true
+    joystick()
   }, 1500)
 }
 

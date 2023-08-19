@@ -50,6 +50,14 @@ body {
     }
   }
 
+  .text-under-construction {
+    position: absolute;
+    top: 2vh;
+    left: 5vh;
+    color: #5eff00;
+    z-index: 999;
+  }
+
   .btn-close{
     position: absolute;
     top: 5vh;
@@ -99,6 +107,18 @@ body {
         color: #ffffff;
         border: 1px solid #ffffff;
         transform: scale(1.05);
+      }
+
+      &::after{
+        content: '* construção em progresso';
+        position: absolute;
+        width: 100%;
+        bottom: -100%;
+        left: 0;
+        right: 0;
+        font-size: .8em;
+        font-weight: 400;
+        color: #5eff00;
       }
     
       transition: all 0.5s ease;

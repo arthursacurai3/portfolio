@@ -5,7 +5,8 @@ export function createPhysSphere(world, sphereRadius, position){
   const sphereBody = new CANNON.Body({
     mass: 10,
     shape: new CANNON.Sphere(sphereRadius),
-    position: new CANNON.Vec3(...position)
+    position: new CANNON.Vec3(...position),
+    linearDamping: 0.5,
   })
   world.addBody(sphereBody)
 

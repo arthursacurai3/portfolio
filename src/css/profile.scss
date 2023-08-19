@@ -235,10 +235,11 @@
         height: 0;
         margin: 12px 0 0 8px;
         font-size: .9em;
-        
+        // letter-spacing: 1px;
         display: flex;
         flex-direction: column;
         gap: 8px;
+        
 
         a:hover {
           color: #fff;

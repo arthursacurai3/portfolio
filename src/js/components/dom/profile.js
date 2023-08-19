@@ -6,7 +6,7 @@ $btnProfile.addEventListener('click', () => {
   document.body.classList.toggle('profile-closed')
 })
 
-const fullText1 = 'Olá! Prazer me chamo Arthur!'
+const fullText1 = 'Olá! Prazer, me chamo Arthur!'
 const fullText2 = 'Sou Desenvolvedor Front End'
 const $text1 = document.querySelector('#text1')
 const $text2 = document.querySelector('#text2')

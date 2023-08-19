@@ -36,11 +36,13 @@
       height: 100%;
       border-radius: 20px;
       object-fit: cover;
+      z-index: 1;
       
       &.showing{
-        box-shadow: 0 0 50px 5px rgba(0, 253, 227, 0.525);
+        box-shadow: 0 0 100px 0 rgba(214, 214, 214, 0.3);
         opacity: 1;
-        transition: all 1s ease-in;
+        z-index: 2;
+        transition: opacity 1s ease-in;
       }
 
       &.only-screen {
@@ -51,8 +53,27 @@
       .timeline-closed & {
         transform: translateY(-200%);
       }
-
     }
+
+    .screen-text-container {
+      position: absolute;
+      bottom: -25%;
+      right: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+
+      .screen-title{
+        font-size: 1.5em;
+      }
+  
+      .screen-description{
+        font-size: 1em;
+      }
+    }
+
   }
 
   &__scroll-list-container {
