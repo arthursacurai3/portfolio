@@ -8,12 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./src/css/all.scss" type="module"/>
+  <link rel="stylesheet" href="./src/css/all.scss" type="module" />
 </head>
 
 <body>
   <span class="text-under-construction displayNone">Modo em construção, não repare se estiver bugado hehe</span>
-  <button class="btn-close displayNone" >Sair do modo 3D</button>
+  <button class="btn-close displayNone">Sair do modo 3D</button>
   <main>
     <section id="profile" class="profile">
       <button type="button" class="profile__btn">
@@ -26,13 +26,18 @@
         <p id="text2" data-transparent="true">a</p>
       </div>
       <div class="profile__stack-logos-container">
-        <span class="profile__logos-wrapper" data-content="javascript"><img src="./src/assets/logo-javascript.svg" alt="javascript"></span>
-        <span class="profile__logos-wrapper" data-content="typescript"><img src="./src/assets/logo-typescript.svg" alt="typescript"></span>
+        <span class="profile__logos-wrapper" data-content="javascript"><img src="./src/assets/logo-javascript.svg"
+            alt="javascript"></span>
+        <span class="profile__logos-wrapper" data-content="typescript"><img src="./src/assets/logo-typescript.svg"
+            alt="typescript"></span>
         <span class="profile__logos-wrapper" data-content="html"><img src="./src/assets/logo-html.svg" alt=""></span>
         <span class="profile__logos-wrapper" data-content="css"><img src="./src/assets/logo-css.svg" alt=""></span>
-        <span class="profile__logos-wrapper" data-content="reactjs"><img src="./src/assets/logo-react.svg" alt=""></span>
-        <span class="profile__logos-wrapper" data-content="nextjs"><img src="./src/assets/logo-nextjs.svg" alt=""></span>
-        <span class="profile__logos-wrapper" data-content="threejs"><img src="./src/assets/logo-threejs.svg" alt=""></span>
+        <span class="profile__logos-wrapper" data-content="reactjs"><img src="./src/assets/logo-react.svg"
+            alt=""></span>
+        <span class="profile__logos-wrapper" data-content="nextjs"><img src="./src/assets/logo-nextjs.svg"
+            alt=""></span>
+        <span class="profile__logos-wrapper" data-content="threejs"><img src="./src/assets/logo-threejs.svg"
+            alt=""></span>
       </div>
       <div class="profile__menu-accordion">
         <div class="accordion">
@@ -47,41 +52,68 @@
           <div class="accordion__item">
             <div class="accordion__item-label">Contato</div>
             <div class="accordion__item-content">
-              <a href="mailto:arthursacurai3@gmail.com">arthursacurai3@gmail.com</a href="mailto:arthursacurai3@gmail.com">
+              <a href="mailto:arthursacurai3@gmail.com">arthursacurai3@gmail.com</a
+                href="mailto:arthursacurai3@gmail.com">
               <a href="https://wa.me/5511930094808" target="_blank" rel="noopener noreferrer">(11) 93009-4808</a>
-              <a href="https://www.linkedin.com/in/arthur-sacurai-48169ab4/" target="_blank" rel="noopener noreferrer" >Linkedin Perfil</a>
-              <a href="https://www.workana.com/freelancer/c6a920f7cb21c10dfb7a1e0109488e82" target="_blank" rel="noopener noreferrer" >Workana Perfil</a>
-              <a href="https://www.99freelas.com.br/user/arthur-sacurai" target="_blank" rel="noopener noreferrer" >99Freelas Perfil</a>
+              <a href="https://www.linkedin.com/in/arthur-sacurai-48169ab4/" target="_blank"
+                rel="noopener noreferrer">Linkedin Perfil</a>
+              <a href="https://www.workana.com/freelancer/c6a920f7cb21c10dfb7a1e0109488e82" target="_blank"
+                rel="noopener noreferrer">Workana Perfil</a>
+              <a href="https://www.99freelas.com.br/user/arthur-sacurai" target="_blank"
+                rel="noopener noreferrer">99Freelas Perfil</a>
             </div>
           </div>
         </div class="accordion">
       </div>
     </section>
     <section id="timeline" class="timeline">
-      <div class="timeline__screen-container">
-        <div class="screens-container desktop">
-          <img class="screen showing" src="./src/assets/maria-filo-concept-card.png" data-content="maria-filo-concept-card" />
-          <img class="screen only-screen" src="./src/assets/under-control.png" data-content="under-control" />
-          <img class="screen only-screen" src="./src/assets/cris-barros-galeria-pdp.png" data-content="cris-barros-galeria-pdp" />
+      <div class="timeline__screens-container swiper">
+        <div class="swiper-wrapper">
+          <div class="screen-container swiper-slide showing" data-content="maria-filo-concept-card">
+            <img class="screen" src="./src/assets/maria-filo-concept-card.png" />
+            <img class="screen mobile" src="./src/assets/maria-filo-concept-card.png"
+              data-content="maria-filo-concept-card" />
+          </div>
+          <div class="screen-container swiper-slide" data-content="maria-filo-concept-card">
+            <img class="screen" src="./src/assets/maria-filo-concept-card.png" />
+            <img class="screen mobile" src="./src/assets/maria-filo-concept-card.png"
+              data-content="maria-filo-concept-card" />
+          </div>
+          <div class="screen-container swiper-slide" data-content="under-control">
+            <img class="screen only-screen" src="./src/assets/under-control.png" />
+          </div>
+          <div class="screen-container swiper-slide" data-content="cris-barros-galeria-pdp">
+            <img class="screen only-screen" src="./src/assets/cris-barros-galeria-pdp.png" />
+          </div>
+          <div class="screen-container swiper-slide" data-content="cris-barros-galeria-pdp">
+            <img class="screen only-screen" src="./src/assets/cris-barros-galeria-pdp.png" />
+          </div>
         </div>
-        <div class="screens-container mobile">
-          <img class="screen showing" src="./src/assets/maria-filo-concept-card.png" data-content="maria-filo-concept-card" />
-        </div>
-        <div class="screen-text-container">
-          <span class="screen-title">Maria Filó - Componente da Home (desktop e mobile)</span>
-          <span class="screen-description">Criado como componente da nova identidade visual do site -  desktop e mobile</span>
-        </div>
+      </div>
+      <div class="screen-text-container">
+        <span class="screen-title">Maria Filó - Componente da Home (desktop e mobile)</span>
+        <span class="screen-description">Criado como componente da nova identidade visual do site - desktop e
+          mobile</span>
       </div>
       <div class="timeline__scroll-list-container">
-        <ul class="scroll-list">
-          <li class="scroll-list-item showing" data-content="maria-filo-concept-card">Maria Filó - Componente da home</li>
-          <li class="scroll-list-item" data-content="under-control">Projeto de estudo - Planejamento financeiro</li>
-          <li class="scroll-list-item" data-content="cris-barros-galeria-pdp">Cris Barros - Galeria Responsiva</li>
-        </ul>
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" data-content="maria-filo-concept-card">Maria Filó - Componente da home</div>
+            <div class="swiper-slide" data-content="under-control">Projeto de estudo - Planejamento financeiro</div>
+            <div class="swiper-slide" data-content="cris-barros-galeria-pdp">Cris Barros - Galeria Responsiva</div>
+            <div class="swiper-slide" data-content="maria-filo-concept-card">Maria Filó - Componente da home</div>
+            <div class="swiper-slide" data-content="under-control">Projeto de estudo - Planejamento financeiro</div>
+            <div class="swiper-slide" data-content="cris-barros-galeria-pdp">Cris Barros - Galeria Responsiva</div>
+            <div class="swiper-slide" data-content="maria-filo-concept-card">Maria Filó - Componente da home</div>
+            <div class="swiper-slide" data-content="under-control">Projeto de estudo - Planejamento financeiro</div>
+            <div class="swiper-slide" data-content="cris-barros-galeria-pdp">Cris Barros - Galeria Responsiva</div>
+          </div>
+          <div class="swiper-scrollbar-vertical"></div>
+        </div>
       </div>
     </section>
-    <button class="btn-play">Universo 3D</button>
   </main>
+  <button class="btn-play">Universo 3D</button>
 
   <script src="./src/js/index.js" type="module"></script>
 </body>

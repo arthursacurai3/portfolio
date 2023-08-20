@@ -23,7 +23,7 @@ let renderer = new THREE.WebGLRenderer({ antialias: true })
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap
 
-renderer.setSize(window.innerWidth, window.innerHeight)
+renderer.setSize(window.screen.availWidth, window.screen.availHeight)
 
 document.body.appendChild(renderer.domElement)
 
@@ -31,7 +31,7 @@ const scene = new THREE.Scene()
 
 export const camera = new THREE.PerspectiveCamera(
   60,
-  window.innerWidth / window.innerHeight,
+  window.screen.availWidth / window.screen.availHeight,
   0.1,
   1000
 )
@@ -99,11 +99,11 @@ window.addEventListener('mousemove', (e) => {
   const mousePosX = e.clientX
   const mousePosY = e.clientY
 
-  if (mousePosX > window.innerWidth) mousePosX = mousePosX - window.innerWidth
-  if (mousePosY > window.window.innerHeight) mousePosY = mousePosY - window.window.innerHeight
+  if (mousePosX > window.screen.availWidth) mousePosX = mousePosX - window.screen.availWidth
+  if (mousePosY > window.window.screen.availHeight) mousePosY = mousePosY - window.window.screen.availHeight
 
-  mousePosition.x = (mousePosX / window.innerWidth) * 2 - 1
-  mousePosition.y = - (mousePosY / window.innerHeight) * 2 + 1
+  mousePosition.x = (mousePosX / window.screen.availWidth) * 2 - 1
+  mousePosition.y = - (mousePosY / window.screen.availHeight) * 2 + 1
 })
 
 const cannonDebugger = new CannonDebugger(scene, world)
@@ -221,7 +221,6 @@ export function setupPhysWorld() {
       let socialMedia = socialMediaInfos[models[i].children[0].userData.socialMediaName]
       socialMedia.parent.remove(socialMedia)
     }
-    console.log({carModel: threeObjs.carModel, carBody: worldObjs.carBody})
     setupReady = true
     joystick()
   }, 1500)
@@ -259,7 +258,7 @@ function raysIntersections() {
 renderer.setAnimationLoop(animate)
 
 window.addEventListener('resize', function () {
-  camera.aspect = window.innerWidth / window.innerHeight
+  camera.aspect = window.screen.availWidth / window.screen.availHeight
   camera.updateProjectionMatrix()
-  renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.setSize(window.screen.availWidth, window.screen.availHeight)
 })

@@ -35,7 +35,7 @@ body {
   margin: 0;
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
 
   canvas {
     position: fixed;
@@ -55,7 +55,7 @@ body {
     top: 2vh;
     left: 5vh;
     color: #5eff00;
-    z-index: 999;
+    z-index: 2;
   }
 
   .btn-close{
@@ -88,7 +88,7 @@ body {
     width: 100%;
     height: auto;
     position: absolute;
-    z-index: 9;
+    z-index: 3;
 
     .btn-play {
       position: absolute;
@@ -101,6 +101,11 @@ body {
       font-size: 1rem;
       border-radius: 20px;
       border: 1px solid rgba($color: #ffffff, $alpha: .5);
+
+      @media screen and (max-width: 767px) {
+        bottom: 5%;
+        right: 5%;
+      }
     
       &:hover{
         box-shadow: 0 0 50px 0px rgba($color: #ffffff, $alpha: 0.3);
@@ -132,12 +137,14 @@ textarea,
 select,
 button {
   font: 300 min(1.5vw, 1rem) 'Poppins', sans-serif;
+  @media screen and (max-width: 767px) {
+    font: 300 1rem 'Poppins', sans-serif;
+  }
   -webkit-font-smoothing: antialiased;
 }
 
 button {
   cursor: pointer;
-  z-index: 999;
 }
 
 .displayNone {
