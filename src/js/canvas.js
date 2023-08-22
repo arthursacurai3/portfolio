@@ -49,8 +49,13 @@ createLight(scene)
 
 // camera.position.z = 5
 // camera.position.y = 2
-camera.position.set(0, 5, 15)
-camera.lookAt(0, 6.5, 0)
+if(window.screen.availWidth > 767){
+  camera.position.set(0, 5, 15)
+  camera.lookAt(0, 6.5, 0)
+} else {
+  camera.position.set(0, 5, 20)
+  camera.lookAt(0, 9, 0)
+}
 
 const threeObjs = {}
 

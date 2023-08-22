@@ -1,69 +1,42 @@
 .timeline {
+  position: relative;
+  width: 100%;
+  height: 40svh;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 75svw;
 
   &__screens-container {
-    position: relative;
-    width: 100%;
+    width: calc(100svw - 2 * min(25svw, 325px));
+    height: 100%;
     margin-top: 5svh;
-    box-sizing: border-box;
 
-    .timeline-closed & {
-      transform: translateY(-200%);
-    }
+    .screens-wrapper {
+      width: 100%;
+      height: 100%;
 
-    .screen-container {
-      width: 50svw;
-      height: 40svh;
-      display: flex;
-      justify-content: center;
-      gap: 5%;
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-
-      @media screen and (max-width: 767px) {
+      .screen-container {
+        position: absolute;
         width: 100%;
-        flex-direction: column;
-        align-items: center;
+        height: 100%;
+        opacity: 0;
+        display: flex;
+        justify-content: center;
+        gap: 5%;
 
-        &.swiper-slide-active{
+        &.showing {
           position: relative;
           opacity: 1;
         }
-      }
 
-      &.showing {
-        position: relative;
-        opacity: 1;
-        transition: opacity 1.5s ease;
-        z-index: 3;
-      }
-
-      .screen {
-        box-shadow: 0 0 100px 0 rgba(214, 214, 214, 0.3);
-        width: 70%;
-        border-radius: 20px;
-        object-fit: cover;
-        height: 100%;
-        
-        &.only-screen {
+        .screen {
           height: 100%;
-          width: auto;
-          object-fit: contain;
+          width: 60%;
+          border-radius: 1vw;
 
-          @media screen and (max-width: 767px) {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
+          &.mobile {
+            width: 20svh;
+            height: 40svh;
+            object-fit: cover;
           }
-        }
-
-        &.mobile {
-          width: 20%;
-          object-fit: cover;
         }
       }
     }
@@ -72,17 +45,11 @@
   .screen-text-container {
     position: absolute;
     top: 50vh;
-    right: 0;
-    left: 0;
     width: 100%;
+    padding-right: min(25svw, 325px);
     text-align: center;
     display: flex;
     flex-direction: column;
-
-    @media screen and (max-width: 767px) {
-      padding: 0 12%;
-      top: 110%
-    }
 
     .screen-title {
       font-size: 1.5em;
@@ -96,9 +63,9 @@
   &__scroll-list-container {
     position: relative;
     box-sizing: border-box;
-    width: 20svw;
+    width: 25svw;
     padding-right: 1svw;
-    max-width: 300px;
+    max-width: 325px;
     height: 50svh;
     box-sizing: border-box;
     overflow-x: visible;
@@ -145,19 +112,49 @@
       }
     }
   }
-}
 
-@media screen and (max-width: 767px) {
-  .timeline {
-    width: 100%;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    height: 50svh;
 
-    &__screen-container {
+    &__screens-container {
       width: 100%;
-      padding: 0 10%;
+
+      .screens-wrapper {
+        .screen-container {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          opacity: 1;
+
+          img.screen {
+            height: auto;
+            width: 75%;
+
+            &.mobile {
+              width: 25%;
+            }
+          }
+        }
+      }
     }
 
     &__scroll-list-container {
       display: none;
+    }
+
+    .screen-text-container {
+      padding: 0 12%;
+      top: 55svh;
+
+      .screen-title {
+        font-size: 1em;
+      }
+
+      .screen-description {
+        font-size: .8em;
+      }
     }
   }
 }

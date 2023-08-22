@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="./src/css/all.scss" type="module" />
 </head>
 
-<body>
+<body class="profile-closed">
   <span class="text-under-construction displayNone">Modo em construção, não repare se estiver bugado hehe</span>
   <button class="btn-close displayNone">Sair do modo 3D</button>
   <main>
@@ -67,25 +67,17 @@
       </div>
     </section>
     <section id="timeline" class="timeline">
-      <div class="timeline__screens-container swiper">
-        <div class="swiper-wrapper">
-          <div class="screen-container swiper-slide showing" data-content="maria-filo-concept-card">
+      <div class="timeline__screens-container">
+        <div class="screens-wrapper">
+          <div class="screen-container" data-content="maria-filo-concept-card">
             <img class="screen" src="./src/assets/maria-filo-concept-card.png" />
             <img class="screen mobile" src="./src/assets/maria-filo-concept-card.png"
               data-content="maria-filo-concept-card" />
           </div>
-          <div class="screen-container swiper-slide" data-content="maria-filo-concept-card">
-            <img class="screen" src="./src/assets/maria-filo-concept-card.png" />
-            <img class="screen mobile" src="./src/assets/maria-filo-concept-card.png"
-              data-content="maria-filo-concept-card" />
-          </div>
-          <div class="screen-container swiper-slide" data-content="under-control">
+          <div class="screen-container" data-content="under-control">
             <img class="screen only-screen" src="./src/assets/under-control.png" />
           </div>
-          <div class="screen-container swiper-slide" data-content="cris-barros-galeria-pdp">
-            <img class="screen only-screen" src="./src/assets/cris-barros-galeria-pdp.png" />
-          </div>
-          <div class="screen-container swiper-slide" data-content="cris-barros-galeria-pdp">
+          <div class="screen-container" data-content="cris-barros-galeria-pdp">
             <img class="screen only-screen" src="./src/assets/cris-barros-galeria-pdp.png" />
           </div>
         </div>

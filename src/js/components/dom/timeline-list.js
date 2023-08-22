@@ -6,12 +6,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-// init Swiper:
-// const swiper = new Swiper('.swiper', {
-  // configure Swiper to use modules
-//   modules: [Navigation, Pagination],
-// });
-
 const texts = {
   'maria-filo-concept-card': {
     title: 'Maria Filó - Componente da Home',
@@ -60,7 +54,6 @@ if(window.screen.availWidth > 767){
   })
   
   swiperDesk.on('transitionEnd',()=> {
-    console.log('here')
     const activeContent = document.querySelector('.swiper-slide-active').getAttribute('data-content')
     document.querySelectorAll('.screen-container.showing').forEach(img => {
       img.classList.remove('showing')
@@ -74,6 +67,8 @@ if(window.screen.availWidth > 767){
     }
   })
 } else {
+  initSwiperMob()
+
   const swiperMob = new Swiper('.timeline__screens-container.swiper', {
     modules: [Navigation],
     direction: 'horizontal',
@@ -82,14 +77,24 @@ if(window.screen.availWidth > 767){
   })
 
   swiperMob.on('transitionEnd',()=> {
-    console.log('here')
     document.querySelectorAll('.screen-container.showing').forEach(img => {
       img.classList.remove('showing')
     })
     const activeContent = document.querySelector('.swiper-slide-active').getAttribute('data-content')
     document.querySelector(`.screen-container[data-content="${activeContent}"]`).classList.add('showing')
+    document.querySelector('.screen-title').textContent = texts[activeContent].title
+    if(texts[activeContent].description){
+      document.querySelector('.screen-description').textContent = texts[activeContent].description
+    }
   })
 }
 
+function initSwiperMob(){
+  document.querySelector('.timeline__screens-container').classList.add('swiper')
+  document.querySelector('.screens-wrapper').classList.add('swiper-wrapper')
+  document.querySelectorAll('.screen-container').forEach(screen => {
+    screen.classList.add('swiper-slide')
+  })
+}
 
 
