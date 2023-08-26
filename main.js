@@ -76231,6 +76231,20 @@ function initSwiperMob() {
     screen.classList.add('swiper-slide');
   });
 }
+var $imgContainer = document.querySelector('.screens-wrapper');
+var $imgZoomContainer = document.querySelector('.zoom-full');
+var $btnCloseZoom = $imgZoomContainer.querySelector('.btn-close');
+$imgContainer.addEventListener('click', function (e) {
+  console.log(e);
+  if (e.target.classList.contains('screen')) {
+    var src = e.target.currentSrc.split('/');
+    $imgZoomContainer.setAttribute('style', "background: url('/assets/".concat(src[src.length - 1], "'), rgba(0,0,0,0.9); background-repeat: no-repeat; background-size: contain; background-position: center;"));
+    $imgZoomContainer.classList.remove('displayNone');
+  }
+});
+$btnCloseZoom.addEventListener('click', function () {
+  $imgZoomContainer.classList.add('displayNone');
+});
 
 /***/ }),
 /* 29 */
