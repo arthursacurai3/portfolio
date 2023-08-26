@@ -2,31 +2,48 @@
   width: 25svw;
   max-width: 325px;
   height: 100svh;
-  padding-top: 25px;
   box-sizing: border-box;
-  background: rgb(15, 15, 15);
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 25%, rgba(25, 25, 25, 1) 100%);
-  z-index: 9;
   display: flex;
   align-items: center;
   flex-direction: column;
   position: relative;
+  
+  &__container {
+    padding-top: 25px;
+    background: rgb(15, 15, 15);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 25%, rgba(25, 25, 25, 1) 100%);
+    transition: all 1.5s ease; 
+    z-index: 9;
+
+    &::after {
+      content: '';
+      width: 2px;
+      height: 100%;
+      background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 25%, rgb(221, 221, 221) 100%);
+      position: absolute;
+      top: 0;
+      right: -2px;
+    }
+  }
 
   @media screen and (max-width: 767px) {
     position: absolute;
-    background: #000000;
-    box-shadow: 0px 200px 0 #000;
     width: 100vw;
     height: auto;
     max-width: 90%;
     min-height: 100%;
+
+    &__container {
+      background: #000000;
+      box-shadow: 0px 200px 0 #000;
+    }
   }
 
   body.playing.profile-closed & {
     transform: translateX(-120%);
   }
 
-  .profile-closed & {
+  .profile-closed & .profile__container {
     transform: translateX(-90%);
     box-shadow: none;
     div {
@@ -38,17 +55,6 @@
       background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 25%, rgba(25, 25, 25, 1) 100%);
       transform: translateX(-93%);
     }
-  }
-
-  transition: all 1.5s ease; 
-  &::after {
-    content: '';
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 25%, rgb(221, 221, 221) 100%);
-    position: absolute;
-    top: 0;
-    right: -2px;
   }
 
   &__btn {
@@ -93,6 +99,7 @@
     flex-direction: column;
     align-items: center;
     gap: 5px;
+    z-index: 9;
     
     p {
       text-align: center;

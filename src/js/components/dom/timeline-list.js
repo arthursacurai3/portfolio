@@ -97,4 +97,19 @@ function initSwiperMob(){
   })
 }
 
+const $imgContainer = document.querySelector('.screens-wrapper')
+const $imgZoomContainer = document.querySelector('.zoom-full')
+const $btnCloseZoom = $imgZoomContainer.querySelector('.btn-close')
 
+$imgContainer.addEventListener('click', (e) => {
+  console.log(e)
+  if(e.target.classList.contains('screen')){
+    const src = e.target.currentSrc.split('/')
+    $imgZoomContainer.setAttribute('style', `background: url('/assets/${src[src.length - 1]}'), rgba(0,0,0,0.9); background-repeat: no-repeat; background-size: contain; background-position: center;`)
+    $imgZoomContainer.classList.remove('displayNone')
+  }
+})
+
+$btnCloseZoom.addEventListener('click', () => {
+  $imgZoomContainer.classList.add('displayNone')
+})

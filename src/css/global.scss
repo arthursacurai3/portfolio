@@ -128,6 +128,17 @@ body {
     
       transition: all 0.5s ease;
     }
+
+    .zoom-full {
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      inset: 0;
+      z-index: 999;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+    }
   }
 }
 
