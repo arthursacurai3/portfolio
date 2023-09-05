@@ -75,12 +75,17 @@ var camera = new three__WEBPACK_IMPORTED_MODULE_9__.PerspectiveCamera(60, window
 
 // camera.position.z = 5
 // camera.position.y = 2
+var fontSize = 0.5;
 if (window.screen.availWidth > 767) {
   camera.position.set(0, 5, 15);
-  camera.lookAt(0, 6.5, 0);
+  camera.lookAt(0, 5, 0);
 } else {
-  camera.position.set(0, 5, 20);
-  camera.lookAt(0, 9, 0);
+  console.log(window.screen.availHeight / window.screen.availWidth);
+  var normalizer = Math.pow(window.screen.availHeight / window.screen.availWidth, 5) * 0.03;
+  console.log(normalizer);
+  camera.position.set(0, 4, 20);
+  camera.lookAt(0, 8 - normalizer, 0);
+  fontSize = 0.4;
 }
 var threeObjs = {};
 
@@ -89,13 +94,12 @@ var threeObjs = {};
 var sphereRadius = 1.75;
 var tangSphereSocialCard = 2.25;
 var planeLevelY = 2;
-threeObjs.sphereMesh = (0,_components_webgl_sphere__WEBPACK_IMPORTED_MODULE_0__.createSphere)(scene, sphereRadius, [0, planeLevelY, 0]);
 threeObjs.planeMesh = (0,_components_webgl_plane__WEBPACK_IMPORTED_MODULE_1__.createPlane)(scene);
 function loadSocialCards() {
-  (0,_components_webgl_social_cards__WEBPACK_IMPORTED_MODULE_4__.createGlbSocialMedias)(whatsUrl, 'whats', scene, [tangSphereSocialCard, planeLevelY, 0], 90, 0.15, 0, 0.5, "+55(11)93009-4808");
-  (0,_components_webgl_social_cards__WEBPACK_IMPORTED_MODULE_4__.createGlbSocialMedias)(linkedinUrl, 'linkedin', scene, [0, planeLevelY, -tangSphereSocialCard], 180, 0.25, 0, 0.5, "arthur-sacurai-48169ab4");
-  (0,_components_webgl_social_cards__WEBPACK_IMPORTED_MODULE_4__.createGlbSocialMedias)(facebookUrl, 'facebook', scene, [-tangSphereSocialCard, planeLevelY, 0], 270, 0, 0, 0, "arthur.sacurai");
-  (0,_components_webgl_social_cards__WEBPACK_IMPORTED_MODULE_4__.createGlbSocialMedias)(instagramUrl, 'insta', scene, [0, planeLevelY, tangSphereSocialCard], 360, 0.20, 0, 0.5, "@arthursacurai");
+  (0,_components_webgl_social_cards__WEBPACK_IMPORTED_MODULE_4__.createGlbSocialMedias)(whatsUrl, 'whats', scene, [-3, planeLevelY, 0], 360, 0.15, 0, 0.5, "+55(11)93009-4808", fontSize);
+  (0,_components_webgl_social_cards__WEBPACK_IMPORTED_MODULE_4__.createGlbSocialMedias)(linkedinUrl, 'linkedin', scene, [-1, planeLevelY, 0], 360, 0.25, 0, 0.5, "arthur-sacurai-48169ab4", fontSize);
+  (0,_components_webgl_social_cards__WEBPACK_IMPORTED_MODULE_4__.createGlbSocialMedias)(facebookUrl, 'facebook', scene, [1, planeLevelY, 0], 360, 0, 0, 0, "arthur.sacurai", fontSize);
+  (0,_components_webgl_social_cards__WEBPACK_IMPORTED_MODULE_4__.createGlbSocialMedias)(instagramUrl, 'insta', scene, [3, planeLevelY, 0], 360, 0.20, 0, 0.5, "@arthursacurai", fontSize);
 }
 loadSocialCards();
 
@@ -178,11 +182,6 @@ function joystick() {
   });
 }
 function animate(time) {
-  for (var i = 0; i < _components_webgl_social_cards__WEBPACK_IMPORTED_MODULE_4__.models.length; i++) {
-    if (_components_webgl_social_cards__WEBPACK_IMPORTED_MODULE_4__.models[i] && rotationEnabled) {
-      _components_webgl_social_cards__WEBPACK_IMPORTED_MODULE_4__.models[i].rotateY(0.01);
-    }
-  }
   raysIntersections();
   if (hightlightObj) {
     hightlightObj.position.y = 2 + 0.75 * Math.abs(Math.sin(time / 700));
@@ -65330,12 +65329,12 @@ __webpack_require__.r(__webpack_exports__);
 function createLight(scene) {
   var ambientLight = new three__WEBPACK_IMPORTED_MODULE_0__.AmbientLight(0x333333);
   scene.add(ambientLight);
-  var directionalLight = new three__WEBPACK_IMPORTED_MODULE_0__.DirectionalLight(0xffffff, 1.5);
+  var directionalLight = new three__WEBPACK_IMPORTED_MODULE_0__.DirectionalLight(0xffffff, 2);
   scene.add(directionalLight);
   directionalLight.position.set(0, 5, 6);
   directionalLight.castShadow = true;
-  directionalLight.shadow.mapSize.width = 800;
-  directionalLight.shadow.mapSize.height = 800;
+  directionalLight.shadow.mapSize.width = 2024;
+  directionalLight.shadow.mapSize.height = 2024;
   var spotLight = new three__WEBPACK_IMPORTED_MODULE_0__.SpotLight(0xFFFFFF);
   scene.add(spotLight);
   spotLight.position.set(0, 100, 30);
@@ -67947,6 +67946,7 @@ function createGlbSocialMedias(fileUrl, name, scene, position, rotation) {
   var translateY = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : 0;
   var translateZ = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : 0;
   var text = arguments.length > 8 ? arguments[8] : undefined;
+  var fontSize = arguments.length > 9 ? arguments[9] : undefined;
   var cardParent;
   assetLoader.load(fileUrl.href, function (gltf) {
     var _model$position;
@@ -67957,7 +67957,7 @@ function createGlbSocialMedias(fileUrl, name, scene, position, rotation) {
     model.scale.set(0.5, 0.5, 0.5);
     cardParent = new three__WEBPACK_IMPORTED_MODULE_2__.Object3D();
     cardParent.add(model);
-    (0,_text__WEBPACK_IMPORTED_MODULE_0__.createText)(scene, text, name, translateX = 0, translateY = 0, translateZ = 0);
+    (0,_text__WEBPACK_IMPORTED_MODULE_0__.createText)(scene, text, fontSize, name, translateX = 0, translateY = 0, translateZ = 0);
     cardParent.children.forEach(function (child) {
       child.name = 'social-media';
       child.userData.socialMediaName = name;
@@ -67967,7 +67967,6 @@ function createGlbSocialMedias(fileUrl, name, scene, position, rotation) {
     model.traverse(function (node) {
       if (node.isMesh) {
         node.castShadow = true;
-        node.receiveShadow = true;
         node.name = name;
         node.position.x += translateX;
         node.position.y += translateY;
@@ -68005,12 +68004,13 @@ var fontUrl = new URL(/* asset import */ __webpack_require__(12), __webpack_requ
 var socialMediaInfos = {};
 function createText(scene) {
   var text = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'teste';
-  var socialMediaName = arguments.length > 2 ? arguments[2] : undefined;
+  var fontSize = arguments.length > 2 ? arguments[2] : undefined;
+  var socialMediaName = arguments.length > 3 ? arguments[3] : undefined;
   var assetLoader = new three_examples_jsm_loaders_FontLoader__WEBPACK_IMPORTED_MODULE_0__.FontLoader();
   assetLoader.load(fontUrl.href, function (font) {
     var textGeometry = new three_examples_jsm_geometries_TextGeometry_js__WEBPACK_IMPORTED_MODULE_1__.TextGeometry(text, {
       font: font,
-      size: 0.5,
+      size: fontSize,
       height: 0.2
     });
     var textMesh = new three__WEBPACK_IMPORTED_MODULE_2__.Mesh(textGeometry, new three__WEBPACK_IMPORTED_MODULE_2__.MeshPhongMaterial({
@@ -76071,6 +76071,11 @@ class OrbitControls extends three__WEBPACK_IMPORTED_MODULE_0__.EventDispatcher {
 
 var $btnProfile = document.querySelector('.profile__btn');
 var $profileContainer = document.querySelector('#profile');
+if (window.screen.availWidth < 767) {
+  $btnProfile.classList.toggle('closed');
+  $profileContainer.classList.toggle('closed');
+  document.body.classList.toggle('profile-closed');
+}
 $btnProfile.addEventListener('click', function () {
   $btnProfile.classList.toggle('closed');
   $profileContainer.classList.toggle('closed');
@@ -76233,17 +76238,17 @@ function initSwiperMob() {
 }
 var $imgContainer = document.querySelector('.screens-wrapper');
 var $imgZoomContainer = document.querySelector('.zoom-full');
-var $btnCloseZoom = $imgZoomContainer.querySelector('.btn-close');
+var $btnCloseZoom = $imgZoomContainer.parentElement.querySelector('.btn-close');
 $imgContainer.addEventListener('click', function (e) {
   console.log(e);
   if (e.target.classList.contains('screen')) {
     var src = e.target.currentSrc.split('/');
     $imgZoomContainer.setAttribute('style', "background: url('/assets/".concat(src[src.length - 1], "'), rgba(0,0,0,0.9); background-repeat: no-repeat; background-size: contain; background-position: center;"));
-    $imgZoomContainer.classList.remove('displayNone');
+    $imgZoomContainer.parentElement.classList.remove('displayNone');
   }
 });
 $btnCloseZoom.addEventListener('click', function () {
-  $imgZoomContainer.classList.add('displayNone');
+  $imgZoomContainer.parentElement.classList.add('displayNone');
 });
 
 /***/ }),

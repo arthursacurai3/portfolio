@@ -11,11 +11,12 @@
   <link rel="stylesheet" href="assets/all.scss" type="text/css" />
 <script defer src="main.js"></script><link href="main.css" rel="stylesheet"></head>
 
-<body class="profile-closed">
+<body>
   <span class="text-under-construction displayNone">Modo em construção, não repare se estiver bugado hehe</span>
   <button class="btn-close displayNone">Sair do modo 3D</button>
   <main>
-    <div class="zoom-full displayNone">
+    <div class="zoom-full-container displayNone">
+      <div class="zoom-full"></div>
       <button class="btn-close">fechar</button>
     </div>
     <section id="profile" class="profile">
@@ -72,21 +73,30 @@
 
       </div>
     </section>
-    <section class="timeline__screens-container">
-      <div class="screens-wrapper">
-        <div class="screen-container showing" data-content="maria-filo-concept-card">
-          <img class="screen" src="assets/maria-filo-concept-card.png" />
-          <img class="screen mobile" src="assets/maria-filo-concept-card.png"
-            data-content="maria-filo-concept-card" />
-        </div>
-        <div class="screen-container" data-content="under-control">
-          <img class="screen only-screen" src="assets/under-control.png" />
-        </div>
-        <div class="screen-container" data-content="cris-barros-galeria-pdp">
-          <img class="screen only-screen" src="assets/cris-barros-galeria-pdp.png" />
+    <section class="timeline">
+      <div class="timeline__screens-container">
+  
+        <div class="screens-wrapper">
+          <div class="screen-container showing" data-content="maria-filo-concept-card">
+            <img class="screen" src="assets/maria-filo-concept-card.png" />
+            <img class="screen mobile" src="assets/maria-filo-concept-card.png"
+              data-content="maria-filo-concept-card" />
+          </div>
+          <div class="screen-container" data-content="under-control">
+            <img class="screen only-screen" src="assets/under-control.png" />
+          </div>
+          <div class="screen-container" data-content="cris-barros-galeria-pdp">
+            <img class="screen only-screen" src="assets/cris-barros-galeria-pdp.png" />
+          </div>
         </div>
       </div>
+      <div class="screen-text-container">
+        <span class="screen-title">Maria Filó - Componente da Home (desktop e mobile)</span>
+        <span class="screen-description">Criado como componente da nova identidade visual do site - desktop e
+          mobile</span>
+      </div>
     </section>
+
     <section class="timeline__scroll-list-container">
       <div class="swiper">
         <div class="swiper-wrapper">
@@ -103,11 +113,6 @@
         <div class="swiper-scrollbar-vertical"></div>
       </div>
     </section>
-    <div class="screen-text-container">
-      <span class="screen-title">Maria Filó - Componente da Home (desktop e mobile)</span>
-      <span class="screen-description">Criado como componente da nova identidade visual do site - desktop e
-        mobile</span>
-    </div>
   </main>
   <button class="btn-play">Universo 3D</button>
 

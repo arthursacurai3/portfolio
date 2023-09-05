@@ -116,15 +116,26 @@ body main .btn-play::after {
   font-weight: 400;
   color: #5eff00;
 }
-body main .zoom-full {
+body main .zoom-full-container {
   width: 100vw;
   height: 100vh;
   position: absolute;
   inset: 0;
-  z-index: 9;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  background: #000000;
+}
+body main .zoom-full-container .zoom-full {
+  width: 70%;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+}
+@media screen and (max-width: 767px) {
+  body main .zoom-full-container .zoom-full {
+    max-height: 70%;
+  }
 }
 
 body,
@@ -150,7 +161,7 @@ button {
 }
 
 .displayNone {
-  display: none;
+  display: none !important;
 }
 
 a {
@@ -224,7 +235,7 @@ body.playing.profile-closed .profile {
   background-color: var(--gray-850);
   border: 1px solid rgb(221, 221, 221);
   border-radius: 50%;
-  z-index: 9;
+  z-index: 999;
   background-image: url(assets/icon-arrow-left.svg);
   background-repeat: no-repeat;
   background-position: center;
@@ -266,7 +277,7 @@ body.playing.profile-closed .profile {
 }
 .profile__description-container p[data-typing=finished]::after {
   content: "";
-  height: min(1.55vw, 1.2rem);
+  height: 80%;
   width: 2px;
   background: var(--gray-100);
   position: absolute;
@@ -279,7 +290,7 @@ body.playing.profile-closed .profile {
 }
 .profile__description-container p[data-typing=ongoing]::after {
   content: "";
-  height: min(1.55vw, 1.2rem);
+  height: 80%;
   width: 2px;
   background: var(--gray-100);
   position: absolute;
@@ -386,6 +397,7 @@ body.playing.profile-closed .profile {
   width: 40px;
   height: 40px;
   transform: translateY(-20%);
+  z-index: 999;
 }
 .profile .accordion__item.open::after {
   content: "";
@@ -398,6 +410,7 @@ body.playing.profile-closed .profile {
   width: 40px;
   height: 40px;
   transform: translateY(-20%);
+  z-index: 999;
 }
 .profile .accordion__item-content {
   height: 0;
@@ -417,18 +430,21 @@ body.playing.profile-closed .profile {
   padding-bottom: 15px;
 }
 
-.timeline__screens-container {
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+.timeline .timeline__screens-container {
   width: calc(100svw - 2 * min(25svw, 325px));
   height: 50svh;
-  padding-top: 5vh;
   position: relative;
   display: flex;
   align-items: center;
 }
-.timeline__screens-container .screens-wrapper {
+.timeline .timeline__screens-container .screens-wrapper {
   width: 100%;
 }
-.timeline__screens-container .screens-wrapper .screen-container {
+.timeline .timeline__screens-container .screens-wrapper .screen-container {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -438,20 +454,33 @@ body.playing.profile-closed .profile {
   align-items: center;
   gap: 5%;
 }
-.timeline__screens-container .screens-wrapper .screen-container.showing {
+.timeline .timeline__screens-container .screens-wrapper .screen-container.showing {
   position: relative;
   opacity: 1;
-  z-index: 9;
+  z-index: 8;
 }
-.timeline__screens-container .screens-wrapper .screen-container .screen {
+.timeline .timeline__screens-container .screens-wrapper .screen-container .screen {
   height: 100%;
   width: 60%;
   border-radius: 1vw;
 }
-.timeline__screens-container .screens-wrapper .screen-container .screen.mobile {
+.timeline .timeline__screens-container .screens-wrapper .screen-container .screen.mobile {
   width: 20svh;
   height: 40svh;
   object-fit: cover;
+}
+.timeline .screen-text-container {
+  margin-top: 5vh;
+  padding: 0 5%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+.timeline .screen-text-container .screen-title {
+  font-size: 1.5em;
+}
+.timeline .screen-text-container .screen-description {
+  font-size: 1em;
 }
 
 .timeline__scroll-list-container {
@@ -468,9 +497,9 @@ body.playing.profile-closed .profile {
   content: "";
   position: absolute;
   width: 100%;
-  height: 10%;
-  box-shadow: 0 -10px 15svh 5svh rgb(0, 0, 0), 0 -10px 15svh 5svh rgb(0, 0, 0);
-  bottom: 0;
+  height: 0;
+  box-shadow: 20px 1px 50px 30px rgb(0, 0, 0), 20px 1px 50px 30px rgb(0, 0, 0);
+  top: 0;
   right: 0;
   left: 0;
   z-index: 9;
@@ -479,17 +508,16 @@ body.playing.profile-closed .profile {
   content: "";
   position: absolute;
   width: 100%;
-  height: 10%;
-  box-shadow: 0 10px 15svh 5svh rgb(0, 0, 0), 0 10px 15svh 5svh rgb(0, 0, 0);
-  top: 0;
+  height: 0;
+  box-shadow: 20px 1px 50px 30px rgb(0, 0, 0), 20px 1px 50px 30px rgb(0, 0, 0);
+  bottom: 0;
   right: 0;
   left: 0;
   z-index: 9;
 }
 .timeline__scroll-list-container .swiper {
   width: 100%;
-  height: 40svh;
-  margin-top: 5svh;
+  height: 100%;
   overflow-x: visible;
 }
 .timeline__scroll-list-container .swiper .swiper-slide {
@@ -503,55 +531,40 @@ body.playing.profile-closed .profile {
   z-index: 9;
 }
 
-.screen-text-container {
-  position: absolute;
-  top: 55vh;
-  left: 0;
-  right: 0;
-  padding: 0 5%;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-}
-.screen-text-container .screen-title {
-  font-size: 1.5em;
-}
-.screen-text-container .screen-description {
-  font-size: 1em;
-}
-
 @media screen and (max-width: 767px) {
-  .timeline__screens-container {
+  .timeline {
+    width: 100%;
+  }
+  .timeline .timeline__screens-container {
     flex-direction: column;
     width: 100%;
-    height: 50svh;
     margin-top: 2.5vh;
   }
-  .timeline__screens-container .screens-wrapper .screen-container {
+  .timeline .timeline__screens-container .screens-wrapper .screen-container {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     opacity: 1;
   }
-  .timeline__screens-container .screens-wrapper .screen-container img.screen {
+  .timeline .timeline__screens-container .screens-wrapper .screen-container img.screen {
     height: auto;
     width: 75%;
   }
-  .timeline__screens-container .screens-wrapper .screen-container img.screen.mobile {
+  .timeline .timeline__screens-container .screens-wrapper .screen-container img.screen.mobile {
     width: 25%;
+  }
+  .timeline .screen-text-container {
+    padding: 0 12%;
+  }
+  .timeline .screen-text-container .screen-title {
+    font-size: 1em;
+  }
+  .timeline .screen-text-container .screen-description {
+    font-size: 0.8em;
   }
   .timeline__scroll-list-container {
     display: none;
-  }
-  .screen-text-container {
-    padding: 0 12%;
-  }
-  .screen-text-container .screen-title {
-    font-size: 1em;
-  }
-  .screen-text-container .screen-description {
-    font-size: 0.8em;
   }
 }
 /**
