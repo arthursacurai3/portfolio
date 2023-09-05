@@ -49,12 +49,17 @@ createLight(scene)
 
 // camera.position.z = 5
 // camera.position.y = 2
+let fontSize = 0.5
 if(window.screen.availWidth > 767){
   camera.position.set(0, 5, 15)
-  camera.lookAt(0, 6.5, 0)
+  camera.lookAt(0, 5, 0)
 } else {
-  camera.position.set(0, 5, 20)
-  camera.lookAt(0, 9, 0)
+  console.log(window.screen.availHeight / window.screen.availWidth)
+  const normalizer = (Math.pow(window.screen.availHeight / window.screen.availWidth, 5)) * 0.03
+  console.log(normalizer)
+  camera.position.set(0, 4 , 20)
+  camera.lookAt(0, 8 - normalizer, 0)
+  fontSize = 0.4
 }
 
 const threeObjs = {}
@@ -65,14 +70,13 @@ const sphereRadius = 1.75
 const tangSphereSocialCard = 2.25
 const planeLevelY = 2
 
-threeObjs.sphereMesh = createSphere(scene, sphereRadius, [0, planeLevelY, 0])
 threeObjs.planeMesh = createPlane(scene)
 
 export function loadSocialCards(){
-  createGlbSocialMedias(whatsUrl, 'whats', scene, [tangSphereSocialCard, planeLevelY, 0], 90, 0.15, 0, 0.5, "+55(11)93009-4808")
-  createGlbSocialMedias(linkedinUrl, 'linkedin', scene, [0, planeLevelY, -tangSphereSocialCard], 180, 0.25, 0, 0.5, "arthur-sacurai-48169ab4")
-  createGlbSocialMedias(facebookUrl, 'facebook', scene, [-tangSphereSocialCard, planeLevelY, 0], 270, 0, 0, 0, "arthur.sacurai")
-  createGlbSocialMedias(instagramUrl, 'insta', scene, [0, planeLevelY, tangSphereSocialCard], 360, 0.20, 0, 0.5, "@arthursacurai")
+  createGlbSocialMedias(whatsUrl, 'whats', scene, [-3, planeLevelY, 0], 360, 0.15, 0, 0.5, "+55(11)93009-4808", fontSize)
+  createGlbSocialMedias(linkedinUrl, 'linkedin', scene, [-1, planeLevelY, 0], 360, 0.25, 0, 0.5, "arthur-sacurai-48169ab4", fontSize)
+  createGlbSocialMedias(facebookUrl, 'facebook', scene, [1, planeLevelY, 0], 360, 0, 0, 0, "arthur.sacurai", fontSize)
+  createGlbSocialMedias(instagramUrl, 'insta', scene, [3, planeLevelY, 0], 360, 0.20, 0, 0.5, "@arthursacurai", fontSize)
 }
 
 loadSocialCards()
@@ -168,11 +172,6 @@ function joystick(){
 }
 
 function animate(time) {
-  for (let i = 0; i < models.length; i++) {
-    if (models[i] && rotationEnabled) {
-      models[i].rotateY(0.01)
-    }
-  }
 
   raysIntersections()
 

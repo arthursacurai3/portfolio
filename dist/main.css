@@ -121,7 +121,7 @@ body main .zoom-full {
   height: 100vh;
   position: absolute;
   inset: 0;
-  z-index: 999;
+  z-index: 9;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -275,7 +275,7 @@ body.playing.profile-closed .profile {
   animation-name: typeBlinking;
   animation-duration: 1s;
   animation-iteration-count: infinite;
-  z-index: 999;
+  z-index: 9;
 }
 .profile__description-container p[data-typing=ongoing]::after {
   content: "";
@@ -285,7 +285,7 @@ body.playing.profile-closed .profile {
   position: absolute;
   top: 1px;
   right: -2px;
-  z-index: 999;
+  z-index: 9;
 }
 @keyframes typeBlinking {
   0% {
@@ -338,7 +338,7 @@ body.playing.profile-closed .profile {
   font-size: 0.85rem;
   color: black;
   background: var(--gray-100);
-  z-index: 999;
+  z-index: 9;
   border: 0;
 }
 .profile__logos-wrapper:hover::after {
@@ -352,7 +352,7 @@ body.playing.profile-closed .profile {
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
   border-top: 7px solid var(--gray-100);
-  z-index: 900;
+  z-index: 9;
 }
 .profile__menu-accordion {
   width: 100%;
@@ -473,7 +473,7 @@ body.playing.profile-closed .profile {
   bottom: 0;
   right: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 9;
 }
 .timeline__scroll-list-container::after {
   content: "";
@@ -484,7 +484,7 @@ body.playing.profile-closed .profile {
   top: 0;
   right: 0;
   left: 0;
-  z-index: 9999;
+  z-index: 9;
 }
 .timeline__scroll-list-container .swiper {
   width: 100%;
@@ -500,7 +500,7 @@ body.playing.profile-closed .profile {
 .timeline__scroll-list-container .swiper .swiper-slide.swiper-slide-active {
   color: #ffffff;
   transform: translateX(-5%);
-  z-index: 9999;
+  z-index: 9;
 }
 
 .screen-text-container {

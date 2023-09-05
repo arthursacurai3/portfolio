@@ -1,5 +1,12 @@
 const $btnProfile = document.querySelector('.profile__btn')
 const $profileContainer = document.querySelector('#profile')
+
+if(window.screen.availWidth < 767){
+  $btnProfile.classList.toggle('closed')
+  $profileContainer.classList.toggle('closed')
+  document.body.classList.toggle('profile-closed')
+}
+
 $btnProfile.addEventListener('click', () => {
   $btnProfile.classList.toggle('closed')
   $profileContainer.classList.toggle('closed')

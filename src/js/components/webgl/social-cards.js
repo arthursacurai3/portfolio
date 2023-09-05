@@ -6,18 +6,18 @@ const assetLoader = new GLTFLoader()
 
 export const models = []
 
-export function createGlbSocialMedias(fileUrl,name, scene, position, rotation, translateX = 0, translateY = 0, translateZ = 0, text){
+export function createGlbSocialMedias(fileUrl,name, scene, position, rotation, translateX = 0, translateY = 0, translateZ = 0, text, fontSize){
   let cardParent;
   assetLoader.load(fileUrl.href, function (gltf){
     const model = gltf.scene
     model.position.set(...position)
     model.translateX = translateX
-    model.rotation. y = (rotation*Math.PI)/180
+    model.rotation.y = (rotation*Math.PI)/180
     model.scale.set(0.5,0.5,0.5)
     cardParent = new THREE.Object3D()
     cardParent.add(model)
 
-    createText(scene, text, name, translateX = 0, translateY = 0, translateZ = 0)
+    createText(scene, text,fontSize, name, translateX = 0, translateY = 0, translateZ = 0)
     cardParent.children.forEach(child => {
       child.name = 'social-media'
       child.userData.socialMediaName = name
@@ -27,7 +27,6 @@ export function createGlbSocialMedias(fileUrl,name, scene, position, rotation, t
     model.traverse(function(node) {
       if(node.isMesh){
         node.castShadow = true
-        node.receiveShadow = true
         node.name = name
         
         node.position.x += translateX

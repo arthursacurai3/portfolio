@@ -6,13 +6,13 @@ const fontUrl = new URL('../../../fonts/PoppinsLight_Regular.json', import.meta.
 
 export const socialMediaInfos = {}
 
-export function createText(scene,text='teste', socialMediaName){
+export function createText(scene,text='teste',fontSize, socialMediaName){
   const assetLoader = new FontLoader()
   assetLoader.load(
     fontUrl.href, function (font){
       const textGeometry = new TextGeometry(text, {
         font: font,
-        size: 0.5,
+        size: fontSize,
         height: 0.2,
       })
       const textMesh = new THREE.Mesh(textGeometry,

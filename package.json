@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "build": "webpack",
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "gh-deploy": "git push origin :gh-pages && git subtree push --prefix dist origin gh-pages"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +20,7 @@
     "css-loader": "^6.8.1",
     "cssnano": "^6.0.1",
     "file-loader": "^6.2.0",
+    "gh-pages": "^6.0.0",
     "html-loader": "^4.2.0",
     "html-webpack-plugin": "^5.5.3",
     "json-loader": "^0.5.7",
